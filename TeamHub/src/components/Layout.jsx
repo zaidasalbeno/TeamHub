@@ -14,7 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export function Header() {
@@ -24,6 +24,7 @@ export function Header() {
   const links = [
     { label: "Home", to: "/" },
     { label: "About", to: "/about" },
+    { label: "Work", to: "/work" },
     ...(user
       ? [
           { label: "Tasks", to: "/tasks" },
@@ -37,7 +38,7 @@ export function Header() {
   const nav = (
     <Box className="nav-links">
       {links.map((link) => (
-        <Button component={Link} to={link.to} key={link.to} color="inherit">
+        <Button component={NavLink} to={link.to} key={link.to} color="inherit">
           {link.label}
         </Button>
       ))}
@@ -90,6 +91,7 @@ export function Header() {
             className="menu-button"
             onClick={() => setOpen(true)}
             aria-label="Open navigation"
+            aria-expanded={open}
           >
             <MenuIcon />
           </IconButton>
@@ -105,14 +107,19 @@ export function Header() {
           </Link>
           <List>
             {links.map((link) => (
-              <ListItemButton component={Link} to={link.to} key={link.to}>
+              <ListItemButton component={NavLink} to={link.to} key={link.to}>
                 <ListItemText primary={link.label} />
               </ListItemButton>
             ))}
             {!user && (
-              <ListItemButton component={Link} to="/login">
-                <ListItemText primary="Log in" />
-              </ListItemButton>
+              <>
+                <ListItemButton component={Link} to="/login">
+                  <ListItemText primary="Log in" />
+                </ListItemButton>
+                <ListItemButton component={Link} to="/register">
+                  <ListItemText primary="Get started" />
+                </ListItemButton>
+              </>
             )}
             {user && (
               <ListItemButton
