@@ -24,12 +24,20 @@ For the demo sign-in, enter any email and password and choose **Employer** or **
 
 ## React concepts
 
-- **Hooks:** `useState` manages form, dialog and filter state; `useEffect` persists auth and task updates; `useContext` exposes auth and user role.
-- **Custom hook:** `src/hooks/useTasks.js` owns task loading and create, update and delete operations.
-- **Context:** `src/context/AuthContext.jsx` shares sign-in state, role, registration and logout.
-- **React Router / `useNavigate`:** routes live in `src/App.jsx`; `useNavigate` redirects after sign-in and logout.
-- **Protected routes:** `src/components/ProtectedRoute.jsx` requires authentication and enforces dashboard roles.
-- **MUI:** components and the restrained theme are in `src/theme/theme.js`; dialogs use MUI modal components.
+- **`useState`:** `src/pages/AuthPage.jsx`, `src/pages/DashboardPage.jsx`, and `src/components/TaskDialog.jsx` hold form, filter, and dialog state.
+- **`useEffect`:** `src/hooks/useTasks.js` saves task changes to local storage; `src/context/AuthContext.jsx` persists the signed-in user.
+- **`useContext`:** `src/context/useAuth.js` reads the signed-in user and role from the context created in `src/context/authContext.js`.
+- **Props:** `DashboardPage` receives its role; `TaskDialog` receives open state, the task being edited, and save/close callbacks; `ProtectedRoute` receives the required role and page.
+- **Custom hook:** `src/hooks/useTasks.js` loads sample tasks from local storage and provides create, update, delete, and status-update actions.
+- **React Router:** routes are declared in `src/App.jsx`; `src/components/ProtectedRoute.jsx` protects signed-in task and role-specific dashboard pages.
+- **`useNavigate`:** `src/pages/AuthPage.jsx` redirects after sign-in or registration; `src/components/Layout.jsx` redirects after logout.
+- **MUI:** components and the project theme are in `src/theme/theme.js`; create, edit, and delete confirmation use MUI dialogs.
+
+## Work item operations
+
+- Employers create and edit work items in `src/components/TaskDialog.jsx`, view them in `src/pages/DashboardPage.jsx`, and confirm deletion before removing an item.
+- Employees view their assigned items on `/employee` and update their status from the task list.
+- `src/hooks/useTasks.js` persists task data in local storage so changes remain available after refresh.
 
 ## Project structure
 
