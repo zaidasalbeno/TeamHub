@@ -21,6 +21,10 @@ export function Header() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const handleLogout = () => {
+    logout();
+    navigate("/", { replace: true });
+  };
   const links = [
     { label: "Home", to: "/" },
     { label: "About", to: "/about" },
@@ -68,10 +72,7 @@ export function Header() {
                 <Button
                   variant="outlined"
                   size="small"
-                  onClick={() => {
-                    logout();
-                    navigate("/");
-                  }}
+                  onClick={handleLogout}
                 >
                   Log out
                 </Button>
@@ -123,10 +124,7 @@ export function Header() {
             )}
             {user && (
               <ListItemButton
-                onClick={() => {
-                  logout();
-                  navigate("/");
-                }}
+                onClick={handleLogout}
               >
                 <ListItemText primary="Log out" />
               </ListItemButton>

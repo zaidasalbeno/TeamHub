@@ -35,13 +35,23 @@ export default function AuthPage({ register = false }) {
     setForm((current) => ({ ...current, [key]: event.target.value }));
   const submit = (event) => {
     event.preventDefault();
+    setError("");
     if (!form.email || !form.password || (register && !form.name)) {
       setError("Please complete all required fields.");
       return;
     }
-    if (register) signUp(form.name, form.email, form.role);
-    else login(form.email, form.role);
-    navigate(form.role === "employer" ? "/employer" : "/employee");
+
+    try {
+      const signedInUser = register
+        ? signUp(form.name, form.email, form.role)
+        : login(form.email, form.role);
+      navigate(
+        signedInUser.role === "employer" ? "/employer" : "/employee",
+        { replace: true },
+      );
+    } catch (submissionError) {
+      setError(submissionError.message);
+    }
   };
   return (
     <Container maxWidth="sm" className="auth-page">
@@ -92,7 +102,7 @@ export default function AuthPage({ register = false }) {
             />
             <TextField
               select
-              label="I’m joining as a"
+              label={register ? "I’m joining as a" : "Choose a demo role"}
               value={form.role}
               onChange={change("role")}
             >
