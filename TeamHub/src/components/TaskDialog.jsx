@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Dialog,
@@ -20,10 +20,7 @@ const blank = {
   description: "",
 };
 export default function TaskDialog({ open, onClose, onSave, task }) {
-  const [form, setForm] = useState(blank);
-  useEffect(() => {
-    setForm(task || blank);
-  }, [task, open]);
+  const [form, setForm] = useState(() => (task ? { ...task } : { ...blank }));
   const update = (key) => (event) =>
     setForm((value) => ({ ...value, [key]: event.target.value }));
   return (

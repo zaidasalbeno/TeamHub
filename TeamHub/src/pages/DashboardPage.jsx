@@ -28,7 +28,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
 import { useTasks } from "../hooks/useTasks";
 import TaskDialog from "../components/TaskDialog";
 
@@ -201,15 +201,17 @@ export function DashboardPage({ role }) {
           }
         />
       </Box>
-      <TaskDialog
-        open={dialog}
-        onClose={() => {
-          setDialog(false);
-          setEditing(null);
-        }}
-        onSave={saveTask}
-        task={editing}
-      />
+      {dialog && (
+        <TaskDialog
+          open
+          onClose={() => {
+            setDialog(false);
+            setEditing(null);
+          }}
+          onSave={saveTask}
+          task={editing}
+        />
+      )}
       <Dialog open={Boolean(removing)} onClose={() => setRemoving(null)}>
         <DialogTitle>Delete this task?</DialogTitle>
         <DialogContent>
