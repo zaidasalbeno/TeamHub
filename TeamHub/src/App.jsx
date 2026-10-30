@@ -7,6 +7,7 @@ import { theme } from "./theme/theme";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import AuthPage from "./pages/AuthPage";
+import WorkPage from "./pages/WorkPage";
 import { DashboardPage, TasksPage } from "./pages/DashboardPage";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/about" element={<AboutPage />} />
+                <Route path="/work" element={<WorkPage />} />
                 <Route path="/login" element={<AuthPage />} />
                 <Route path="/register" element={<AuthPage register />} />
                 <Route

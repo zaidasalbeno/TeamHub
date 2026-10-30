@@ -801,6 +801,122 @@ textarea {
 .feature-card .MuiTypography-h6 {
   font-family: Manrope, sans-serif;
 }
+.nav-links a.active {
+  color: #174b41;
+  background-color: #e8f1ee;
+}
+.work-hero {
+  background: #f3f6f2;
+  padding: 66px 0 62px;
+}
+.work-hero .eyebrow {
+  justify-content: center;
+}
+.work-title {
+  max-width: 780px;
+  margin: 17px auto 14px !important;
+  color: #20332d !important;
+  font-family: Manrope, sans-serif !important;
+  font-size: clamp(38px, 5vw, 56px) !important;
+  line-height: 1.12 !important;
+}
+.work-intro {
+  max-width: 650px;
+  margin: 0 auto !important;
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+}
+.work-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.work-content {
+  padding-top: 55px;
+  padding-bottom: 68px;
+}
+.work-step-card {
+  height: 100%;
+}
+.work-step-card .MuiCardContent-root {
+  padding: 23px;
+}
+.work-step-number {
+  color: #397663;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+}
+.work-step-card h6 {
+  margin: 13px 0 7px;
+  font-family: Manrope, sans-serif;
+  font-weight: 700;
+}
+.work-step-card p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.work-example {
+  max-width: 760px;
+  margin: 42px auto 0;
+  padding: 24px;
+  border: 1px solid #e5e9e6;
+  border-radius: 12px;
+  background: #fff;
+}
+.work-example-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.work-example-heading h3 {
+  margin-top: 8px;
+  font-family: Manrope, sans-serif;
+  font-size: 21px;
+}
+.work-example-heading > svg {
+  color: #397663;
+}
+.work-task-list {
+  list-style: none;
+  margin: 15px 0 10px;
+  padding: 0;
+}
+.work-task-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid #edf0ee;
+}
+.work-task-list li > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.work-task-list strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+.work-task-list li > div span {
+  font-size: 12px;
+}
+.status-pill.to-do {
+  background: #f6f0e4;
+  color: #73551f;
+}
+.status-pill.in-progress {
+  background: #eaf1f6;
+  color: #365c73;
+}
+.work-example > .MuiButton-root {
+  margin-top: 12px;
+}
 @media (max-width: 900px) {
   .hero-section {
     padding: 56px 0;
@@ -831,6 +947,9 @@ textarea {
   }
   .about-image {
     height: 310px;
+  }
+  .work-hero {
+    padding: 49px 0;
   }
 }
 @media (max-width: 600px) {
@@ -901,6 +1020,20 @@ textarea {
   }
   .about-image {
     height: 260px;
+  }
+  .work-content {
+    padding-top: 42px;
+    padding-bottom: 48px;
+  }
+  .work-example {
+    margin-top: 28px;
+    padding: 18px 15px;
+  }
+  .work-example-heading h3 {
+    font-size: 18px;
+  }
+  .work-task-list li {
+    align-items: flex-start;
   }
   .values-row {
     grid-template-columns: 1fr;
