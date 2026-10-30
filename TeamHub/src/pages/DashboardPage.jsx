@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   Alert,
   Avatar,
@@ -59,7 +59,15 @@ export function TasksPage() {
       <Typography color="text.secondary" sx={{ mb: 3 }}>
         A shared view of what’s on the list and what’s moving.
       </Typography>
-      <TaskTable tasks={mine} employee={user.role === "employee"} />
+      <TaskTable
+        tasks={mine}
+        employee={user.role === "employee"}
+        emptyMessage={
+          user.role === "employer"
+            ? "There are no team tasks yet. Create a task to assign work to an employee."
+            : "You do not have any assigned tasks yet."
+        }
+      />
     </Container>
   );
 }
@@ -78,13 +86,10 @@ export function DashboardPage({ role }) {
             task.email.toLowerCase() === user.email.toLowerCase() ||
             task.employee.toLowerCase() === user.name.toLowerCase(),
         );
-  const visible = useMemo(
-    () =>
-      role === "employer" && filter !== "All tasks"
-        ? mine.filter((task) => task.status === filter)
-        : mine,
-    [filter, mine, role],
-  );
+  const visible =
+    role === "employer" && filter !== "All tasks"
+      ? mine.filter((task) => task.status === filter)
+      : mine;
   const count = (status) =>
     mine.filter((task) => task.status === status).length;
   const openEdit = (task = null) => {
@@ -192,6 +197,11 @@ export function DashboardPage({ role }) {
           onEdit={openEdit}
           onDelete={setRemoving}
           onStatus={updateStatus}
+          emptyMessage={
+            role === "employer"
+              ? "There are no team tasks yet. Create a task to assign work to an employee."
+              : "You do not have any assigned tasks yet."
+          }
         />
       </Box>
       <TaskDialog
@@ -223,17 +233,28 @@ export function DashboardPage({ role }) {
   );
 }
 
-function TaskTable({ tasks, employee, onEdit, onDelete, onStatus }) {
+function TaskTable({
+  tasks,
+  employee,
+  onEdit,
+  onDelete,
+  onStatus,
+  emptyMessage,
+}) {
   if (!tasks.length)
     return (
       <Alert severity="info" sx={{ my: 2 }}>
-        No tasks to show yet. Ask your employer to assign one to you or create a
-        task from the team dashboard.
+        {emptyMessage || "There are no tasks to show."}
       </Alert>
     );
   return (
-    <TableContainer className="task-table-wrap">
-      <Table>
+    <TableContainer
+      className="task-table-wrap"
+      role="region"
+      aria-label="Task list. Scroll horizontally to see all columns."
+      tabIndex={0}
+    >
+      <Table aria-label="Employee tasks">
         <TableHead>
           <TableRow>
             <TableCell>Task</TableCell>
