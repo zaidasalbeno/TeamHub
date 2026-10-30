@@ -41,17 +41,21 @@ function Status({ value }) {
     />
   );
 }
+
+function getAssignedTasks(tasks, user) {
+  return tasks.filter((task) => {
+    if (task.email) {
+      return task.email.toLowerCase() === user.email.toLowerCase();
+    }
+    return task.employee.toLowerCase() === user.name.toLowerCase();
+  });
+}
+
 export function TasksPage() {
   const { user } = useAuth();
   const { tasks } = useTasks();
   const mine =
-    user.role === "employer"
-      ? tasks
-      : tasks.filter(
-          (task) =>
-            task.email.toLowerCase() === user.email.toLowerCase() ||
-            task.employee.toLowerCase() === user.name.toLowerCase(),
-        );
+    user.role === "employer" ? tasks : getAssignedTasks(tasks, user);
   return (
     <Container maxWidth="lg" className="content-page">
       <Typography className="eyebrow">YOUR TEAM’S WORK</Typography>
@@ -78,14 +82,7 @@ export function DashboardPage({ role }) {
   const [dialog, setDialog] = useState(false);
   const [removing, setRemoving] = useState(null);
   const [filter, setFilter] = useState("All tasks");
-  const mine =
-    role === "employer"
-      ? tasks
-      : tasks.filter(
-          (task) =>
-            task.email.toLowerCase() === user.email.toLowerCase() ||
-            task.employee.toLowerCase() === user.name.toLowerCase(),
-        );
+  const mine = role === "employer" ? tasks : getAssignedTasks(tasks, user);
   const visible =
     role === "employer" && filter !== "All tasks"
       ? mine.filter((task) => task.status === filter)
@@ -308,6 +305,11 @@ function TaskTable({
                     value={task.status}
                     onChange={(e) => onStatus(task.id, e.target.value)}
                     className="status-select"
+                    SelectProps={{
+                      inputProps: {
+                        "aria-label": `Status for ${task.title}`,
+                      },
+                    }}
                   >
                     <MenuItem value="To do">To do</MenuItem>
                     <MenuItem value="In progress">In progress</MenuItem>
