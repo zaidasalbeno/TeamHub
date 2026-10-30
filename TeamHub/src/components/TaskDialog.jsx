@@ -1,0 +1,10 @@
+import { useEffect, useState } from 'react'
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, Stack, TextField } from '@mui/material'
+
+const blank = { title: '', employee: '', email: '', due: '', status: 'To do', priority: 'Medium', description: '' }
+export default function TaskDialog({ open, onClose, onSave, task }) {
+  const [form, setForm] = useState(blank)
+  useEffect(() => { setForm(task || blank) }, [task, open])
+  const update = (key) => (event) => setForm((value) => ({ ...value, [key]: event.target.value }))
+  return <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm"><DialogTitle>{task ? 'Edit task' : 'Create a task'}</DialogTitle><DialogContent><Stack spacing={2} sx={{ pt: 1 }}><TextField label="Task title" value={form.title} onChange={update('title')} required fullWidth/><TextField label="Employee name" value={form.employee} onChange={update('employee')} required fullWidth/><TextField label="Employee email" type="email" value={form.email} onChange={update('email')} fullWidth/><TextField label="Due date" type="date" value={form.due} onChange={update('due')} InputLabelProps={{ shrink: true }} fullWidth/><TextField label="Description" value={form.description} onChange={update('description')} multiline minRows={3} fullWidth/><TextField select label="Priority" value={form.priority} onChange={update('priority')}><MenuItem value="Low">Low</MenuItem><MenuItem value="Medium">Medium</MenuItem><MenuItem value="High">High</MenuItem></TextField><TextField select label="Status" value={form.status} onChange={update('status')}><MenuItem value="To do">To do</MenuItem><MenuItem value="In progress">In progress</MenuItem><MenuItem value="Done">Done</MenuItem></TextField></Stack></DialogContent><DialogActions sx={{ p: 2.5 }}><Button onClick={onClose} color="inherit">Cancel</Button><Button variant="contained" disabled={!form.title || !form.employee} onClick={() => { onSave({ ...form, id: task?.id }); onClose() }}>Save task</Button></DialogActions></Dialog>
+}
