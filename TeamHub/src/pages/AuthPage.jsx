@@ -14,6 +14,9 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const NON_WHITESPACE_PATTERN = /\S/;
+
 export default function AuthPage({ register = false }) {
   const { user, login, register: signUp } = useAuth();
   const navigate = useNavigate();
@@ -36,15 +39,30 @@ export default function AuthPage({ register = false }) {
   const submit = (event) => {
     event.preventDefault();
     setError("");
-    if (!form.email || !form.password || (register && !form.name)) {
+    const email = form.email.trim();
+    const name = form.name.trim();
+
+    if (!email || !form.password || (register && !name)) {
       setError("Please complete all required fields.");
+      return;
+    }
+    if (!EMAIL_PATTERN.test(email)) {
+      setError("Enter a valid email address.");
+      return;
+    }
+    if (!NON_WHITESPACE_PATTERN.test(form.password)) {
+      setError("Enter a password that is not only spaces.");
+      return;
+    }
+    if (register && !NON_WHITESPACE_PATTERN.test(name)) {
+      setError("Enter your name.");
       return;
     }
 
     try {
       const signedInUser = register
-        ? signUp(form.name, form.email, form.role)
-        : login(form.email, form.role);
+        ? signUp(name, email, form.role)
+        : login(email, form.role);
       navigate(
         signedInUser.role === "employer" ? "/employer" : "/employee",
         { replace: true },
