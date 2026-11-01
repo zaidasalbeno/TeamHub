@@ -13,21 +13,21 @@ export const theme = createTheme({
   typography: {
     fontFamily:
       'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    h1: { fontWeight: 650, letterSpacing: "-.045em" },
-    h2: { fontWeight: 650, letterSpacing: "-.035em" },
-    h3: { fontWeight: 650, letterSpacing: "-.025em" },
-    button: { textTransform: "none", fontWeight: 600 },
+    h1: { fontWeight: 600 },
+    h2: { fontWeight: 600 },
+    h3: { fontWeight: 600 },
+    button: { textTransform: "none", fontWeight: 500 },
   },
-  shape: { borderRadius: 12 },
+  shape: { borderRadius: 6 },
   components: {
     MuiButton: {
-      styleOverrides: { root: { borderRadius: 9, padding: "9px 16px" } },
+      styleOverrides: { root: { borderRadius: 6, padding: "8px 14px" } },
     },
     MuiCard: {
       styleOverrides: {
         root: {
           border: "1px solid #e5e9e6",
-          boxShadow: "0 2px 10px rgba(27,49,41,.035)",
+          boxShadow: "none",
         },
       },
     },

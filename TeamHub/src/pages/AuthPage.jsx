@@ -14,8 +14,6 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const NON_WHITESPACE_PATTERN = /\S/;
 
 export default function AuthPage({ register = false }) {
   const { user, login, register: signUp } = useAuth();
@@ -36,33 +34,16 @@ export default function AuthPage({ register = false }) {
     );
   const change = (key) => (event) =>
     setForm((current) => ({ ...current, [key]: event.target.value }));
-  const submit = (event) => {
+  const submit = async (event) => {
     event.preventDefault();
     setError("");
     const email = form.email.trim();
     const name = form.name.trim();
 
-    if (!email || !form.password || (register && !name)) {
-      setError("Please complete all required fields.");
-      return;
-    }
-    if (!EMAIL_PATTERN.test(email)) {
-      setError("Enter a valid email address.");
-      return;
-    }
-    if (!NON_WHITESPACE_PATTERN.test(form.password)) {
-      setError("Enter a password that is not only spaces.");
-      return;
-    }
-    if (register && !NON_WHITESPACE_PATTERN.test(name)) {
-      setError("Enter your name.");
-      return;
-    }
-
     try {
       const signedInUser = register
-        ? signUp(name, email, form.role)
-        : login(email, form.role);
+        ? await signUp(name, email, form.password, form.role)
+        : await login(email, form.password);
       navigate(
         signedInUser.role === "employer" ? "/employer" : "/employee",
         { replace: true },
@@ -117,16 +98,23 @@ export default function AuthPage({ register = false }) {
               onChange={change("password")}
               required
               fullWidth
+              helperText={
+                register
+                  ? "Use at least 8 characters with uppercase, lowercase, a number, and a symbol."
+                  : undefined
+              }
             />
-            <TextField
-              select
-              label={register ? "I’m joining as a" : "Choose a demo role"}
-              value={form.role}
-              onChange={change("role")}
-            >
-              <MenuItem value="employee">Employee</MenuItem>
-              <MenuItem value="employer">Employer</MenuItem>
-            </TextField>
+            {register && (
+              <TextField
+                select
+                label="I’m joining as a"
+                value={form.role}
+                onChange={change("role")}
+              >
+                <MenuItem value="employee">Employee</MenuItem>
+                <MenuItem value="employer">Employer</MenuItem>
+              </TextField>
+            )}
             <Button
               type="submit"
               variant="contained"
@@ -137,16 +125,6 @@ export default function AuthPage({ register = false }) {
             </Button>
           </Stack>
         </Box>
-        {!register && (
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            sx={{ display: "block", mt: 2, textAlign: "center" }}
-          >
-            For this demo, enter any email and password. Choose a role to
-            preview its dashboard.
-          </Typography>
-        )}
         <Typography variant="body2" align="center" sx={{ mt: 3 }}>
           {register ? "Already have an account? " : "New to TeamHub? "}
           <Link to={register ? "/login" : "/register"} className="text-link">
