@@ -11,7 +11,7 @@ npm run dev
 
 Open the local URL printed by Vite. Build the production bundle with `npm run build`.
 
-For the demo sign-in, enter any email and password and choose **Employer** or **Employee**. Registration saves a named account. Employee sample tasks are assigned to `jordan@example.com` (Jordan Lee) and `sam@example.com` (Sam Rivera); register with one of those emails to see assigned work. Data is stored in browser local storage.
+Create an account with your name, email, password, and **Employer** or **Employee** role, then sign in with the same email and password. Account details are saved in browser local storage; passwords are stored as salted PBKDF2 hashes. Employee sample tasks are assigned to `jordan@example.com` (Jordan Lee) and `sam@example.com` (Sam Rivera); register with one of those emails and the matching name to see assigned work.
 
 ## Routes
 

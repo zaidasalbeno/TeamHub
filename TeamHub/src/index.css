@@ -1,13 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 :root {
-  font-family: "DM Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: #202b28;
   background: #f7f8f6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-optical-sizing: auto;
   font-weight: 400;
 }
 * {
@@ -49,7 +47,7 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 21px;
   font-weight: 800;
   letter-spacing: -1px;
@@ -130,11 +128,11 @@ textarea {
   overflow: hidden;
 }
 .eyebrow {
-  font-size: 11px !important;
-  letter-spacing: 1.35px !important;
-  font-weight: 700 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.3px !important;
+  font-weight: 600 !important;
   color: #397663 !important;
-  text-transform: uppercase;
+  text-transform: none;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -146,8 +144,8 @@ textarea {
   background: #d78b4c;
 }
 .hero-title {
-  font-family: Manrope, sans-serif !important;
-  font-size: clamp(40px, 5.2vw, 64px) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: clamp(38px, 4.8vw, 54px) !important;
   line-height: 1.08 !important;
   max-width: 650px;
   margin-top: 22px !important;
@@ -164,50 +162,12 @@ textarea {
   font-size: 17px !important;
   line-height: 1.7 !important;
 }
-.trust-line {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 30px;
-  color: #697571;
-  font-size: 13px;
-}
-.avatar-stack {
-  display: flex;
-  padding-left: 3px;
-}
-.avatar-stack i {
-  font-style: normal;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 2px solid #f3f6f2;
-  background: #b9d4c4;
-  color: #315c4d;
-  font-size: 10px;
-  display: grid;
-  place-items: center;
-  margin-left: -4px;
-}
-.avatar-stack i:nth-child(2) {
-  background: #ead2b7;
-  color: #735331;
-}
-.avatar-stack i:nth-child(3) {
-  background: #d5cce1;
-  color: #574e6b;
-}
-.avatar-stack i:nth-child(4) {
-  background: #fff;
-  color: #397663;
-  font-weight: 700;
-}
 .preview-shell {
   background: #fff;
   border: 1px solid #e0e6e1;
-  border-radius: 14px;
+  border-radius: 8px;
   padding: 19px 20px 16px;
-  box-shadow: 0 18px 48px rgba(31, 61, 49, 0.08);
+  box-shadow: none;
   max-width: 460px;
   margin-left: auto;
 }
@@ -242,7 +202,7 @@ textarea {
   font-weight: 700;
 }
 .preview-intro h5 {
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 700;
   margin: 4px 0;
@@ -402,7 +362,7 @@ textarea {
   justify-content: center;
 }
 .section-heading h2 {
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 34px;
   margin: 12px 0 6px;
 }
@@ -452,7 +412,7 @@ textarea {
   gap: 24px;
 }
 .about-banner h3 {
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
   margin: 8px 0;
 }
@@ -472,7 +432,7 @@ textarea {
   justify-content: center;
 }
 .about-hero h1 {
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: clamp(38px, 5vw, 55px);
   line-height: 1.13;
   margin: 16px 0;
@@ -484,7 +444,7 @@ textarea {
   margin: 0 auto;
 }
 .about-story h2 {
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   margin: 12px 0;
 }
 .about-image {
@@ -618,7 +578,7 @@ textarea {
   justify-content: center;
 }
 .auth-card h3 {
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 26px;
   margin: 10px 0;
 }
@@ -640,7 +600,7 @@ textarea {
   gap: 18px;
 }
 .dashboard-top h2 {
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 32px;
   margin: 8px 0;
 }
@@ -799,7 +759,7 @@ textarea {
   flex: 1;
 }
 .feature-card .MuiTypography-h6 {
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .nav-links a.active {
   color: #174b41;
@@ -816,8 +776,8 @@ textarea {
   max-width: 780px;
   margin: 17px auto 14px !important;
   color: #20332d !important;
-  font-family: Manrope, sans-serif !important;
-  font-size: clamp(38px, 5vw, 56px) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: clamp(36px, 4.5vw, 48px) !important;
   line-height: 1.12 !important;
 }
 .work-intro {
@@ -852,7 +812,7 @@ textarea {
 }
 .work-step-card h6 {
   margin: 13px 0 7px;
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
 }
 .work-step-card p {
@@ -875,7 +835,7 @@ textarea {
 }
 .work-example-heading h3 {
   margin-top: 8px;
-  font-family: Manrope, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 21px;
 }
 .work-example-heading > svg {

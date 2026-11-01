@@ -72,15 +72,6 @@ export default function HomePage() {
                   Get to know TeamHub
                 </Button>
               </Stack>
-              <div className="trust-line">
-                <span className="avatar-stack">
-                  <i>A</i>
-                  <i>J</i>
-                  <i>M</i>
-                  <i>+</i>
-                </span>
-                <span>A clearer workday starts here.</span>
-              </div>
             </Grid>
             <Grid size={{ xs: 12, md: 5 }}>
               <div className="preview-shell">
