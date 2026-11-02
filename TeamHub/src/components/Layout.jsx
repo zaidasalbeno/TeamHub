@@ -157,14 +157,3 @@ export function Footer() {
   );
 }
 
-export function Shell({ children }) {
-  return (
-    <>
-      <Header />
-      <Box component="main" sx={{ flex: 1 }}>
-        {children}
-      </Box>
-      <Footer />
-    </>
-  );
-}
